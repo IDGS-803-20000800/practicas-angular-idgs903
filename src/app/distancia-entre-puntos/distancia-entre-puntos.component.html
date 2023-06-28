@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-md-6">
+        <h1>Distancia Entre Puntos</h1>
+        <div class="mb-3">
+            <label class="form-label">Punto x1</label>
+            <input type="number" [(ngModel)]="x1" class="form-control" placeholder="Punto x1" name="x1">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Punto y1</label>
+            <input type="number" [(ngModel)]="y1" class="form-control" placeholder="Punto y1" name="y1">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Punto x2</label>
+            <input type="number" [(ngModel)]="x2" class="form-control" placeholder="Punto x2" name="x2">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Punto y2</label>
+            <input type="number" [(ngModel)]="y2" class="form-control" placeholder="Punto y2" name="y2">
+        </div>
+        <div class="mb-3">
+            <input (click)="calcularDistancia()" class="btn btn-primary" name="calcular" value="Calcular distancia">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h1>Resultado: {{resultado}}</h1>
+    </div>
+</div>

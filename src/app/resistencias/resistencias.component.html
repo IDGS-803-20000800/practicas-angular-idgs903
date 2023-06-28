@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-md-6">
+        <h1>Resistencias</h1>
+        <div class="row">
+            <div class="mb-3">
+                <label class="form-label">Color 1</label> <br>
+                <select name="color1" [(ngModel)]="color1">
+                    <option [value]="color" *ngFor="let color of listaColores; let i = index" [style.background-color]="colorList[i]" [style.color]="isWhiteText(colorList[i]) ? 'white' : 'black'">{{color}}</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Color 2</label> <br>
+                <select name="color2" [(ngModel)]="color2">
+                    <option [value]="color" *ngFor="let color of listaColores; let i = index" [style.background-color]="colorList[i]" [style.color]="isWhiteText(colorList[i]) ? 'white' : 'black'">{{color}}</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Color 3</label> <br>
+                <select name="color3" [(ngModel)]="color3">
+                    <option [value]="color" *ngFor="let color of listaColores; let i = index" [style.background-color]="colorList[i]" [style.color]="isWhiteText(colorList[i]) ? 'white' : 'black'">{{color}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Banda de tolerancia</label> <br>
+            <input type="radio" [(ngModel)]="tolerancia" class="radio" name="tolerancia" [value]="true"> Dorada <br>
+            <input type="radio" [(ngModel)]="tolerancia" class="radio" name="tolerancia" [value]="false"> Plateada
+        </div>
+        <div class="mb-3">
+            <input (click)="calcularResistencia()" class="btn btn-primary" name="calcular" value="Calcular resistencia">
+        </div>
+        <div class="mb3" *ngIf="resultado">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Color 1</th>
+                        <th>Color 2</th>
+                        <th>Color 3</th>
+                        <th>Resistencia</th>
+                        <th>Valor Minimo</th>
+                        <th>Valor Maximo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td [style.background-color]="color1" [style.color]="isWhiteText(color1) ? 'white' : 'black'">{{valor1}}</td>
+                        <td [style.background-color]="color2" [style.color]="isWhiteText(color2) ? 'white' : 'black'">{{valor2}}</td>
+                        <td [style.background-color]="color3" [style.color]="isWhiteText(color3) ? 'white' : 'black'">{{multiplicador}}</td>
+                        <td>{{resultado}}</td>
+                        <td>{{resultadoToleranciaMenos}}</td>
+                        <td>{{resultadoToleranciaMas}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <img src="https://sdindustrial.com.mx/wp-content/uploads/2022/09/codigos-colores-resistencias.png" alt="">
+    </div>
+</div>

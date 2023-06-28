@@ -1,0 +1,24 @@
+<div class="contenedor">
+    <h1>Cinepolis</h1>
+    <mat-form-field>
+        <input matInput type="text" [(ngModel)]="nombre" placeholder="Nombre">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="number" [(ngModel)]="compradores" placeholder="Cantidad de compradores">
+    </mat-form-field>
+    <label>Tarjeta cinepolis</label>
+    <mat-radio-group name="tarjeta" [(ngModel)]="tarjeta">
+        <mat-radio-button [value]="true" style="margin: 10px;">
+            Si
+        </mat-radio-button>
+        <mat-radio-button [value]="false" style="margin: 10px;">
+            No
+        </mat-radio-button>
+    </mat-radio-group>
+    <mat-form-field>
+        <input matInput type="number" [(ngModel)]="boletos" placeholder="Cantidad de boletos">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="calcularTotal()">Calcular pago</button>
+    <br>
+    <h1><p>El total a pagar es: {{efectivo}}</p></h1>
+</div>
