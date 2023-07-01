@@ -6,17 +6,21 @@ import { DistanciaEntrePuntosModule } from "./distancia-entre-puntos/distancia-e
 import { CinepolisModule } from './cinepolis/cinepolis.module';
 import { ResistenciasModule } from './resistencias/resistencias.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MenuComponent } from './menu/menu.component';
+import { AppRoutingModule } from './app.routing.module';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        MenuComponent
     ],
     imports: [
         BrowserModule,
         DistanciaEntrePuntosModule,
         CinepolisModule,
         ResistenciasModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        AppRoutingModule
     ],
     providers: [],
     bootstrap: [AppComponent]
