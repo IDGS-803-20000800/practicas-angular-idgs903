@@ -1,0 +1,139 @@
+<br>
+<div class="row">
+    <h1>Bienvenido a la pizzería</h1> <br>
+    <form (ngSubmit)="onSubmit()" [formGroup]="pizzeriaForm" class="form">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="mb-4">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" required formControlName="nombre" id="nombre" name="nombre">
+                    <div *ngIf="pizzeriaForm.get('nombre')?.touched &&
+                    pizzeriaForm.get('nombre')?.errors?.['required']" class="alert alert-danger">Error: campo requerido
+                    </div>
+                    <div *ngIf="pizzeriaForm.get('nombre')?.touched &&
+                    pizzeriaForm.get('nombre')?.errors?.['pattern']" class="alert alert-danger">El campo debe tener
+                        solo letras</div>
+                </div>
+                <div class="mb-4">
+                    <label for="tamanio" class="form-label">Tamaño de pizza</label> <br>
+                    <input type="radio" class="form-radio" required formControlName="tamanio" id="tamanio"
+                        name="tamanio" value="Chica"> Chica $40 <br>
+                    <input type="radio" class="form-radio" required formControlName="tamanio" id="tamanio"
+                        name="tamanio" value="Mediana"> Mediana $80 <br>
+                    <input type="radio" class="form-radio" required formControlName="tamanio" id="tamanio"
+                        name="tamanio" value="Grande"> Grande $120 <br>
+                    <div *ngIf="pizzeriaForm.get('tamanio')?.touched &&
+                    pizzeriaForm.get('tamanio')?.errors?.['required']" class="alert alert-danger">Error: campo
+                        requerido</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-4">
+                    <label for="direccion" class="form-label">Dirección</label>
+                    <input type="text" class="form-control" required formControlName="direccion" id="direccion"
+                        name="direccion">
+                    <div *ngIf="pizzeriaForm.get('direccion')?.touched &&
+                    pizzeriaForm.get('direccion')?.errors?.['required']" class="alert alert-danger">Error: campo
+                        requerido</div>
+                    <div *ngIf="pizzeriaForm.get('direccion')?.touched &&
+                    pizzeriaForm.get('direccion')?.errors?.['pattern']" class="alert alert-danger">El campo debe tener
+                        solo letras y números</div>
+                </div>
+                <div class="mb-4" formGroupName="ingredientes">
+                    <label for="ingredientes" class="form-label">Ingredientes</label> <br>
+                    <input type="checkbox" class="form-checkbox" formControlName="jamon" id="jamon" name="jamon"
+                        [value]="true"> Jamón $10 <br>
+                    <input type="checkbox" class="form-checkbox" formControlName="pinia" id="pinia" name="pinia"
+                        [value]="true"> Piña $10 <br>
+                    <input type="checkbox" class="form-checkbox" formControlName="champiniones" id="champiniones"
+                        name="champiniones" [value]="true"> Champiñones $10 <br>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-4">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="text" class="form-control" required formControlName="telefono" id="telefono"
+                        name="telefono">
+                    <div *ngIf="pizzeriaForm.get('telefono')?.touched &&
+                    pizzeriaForm.get('telefono')?.errors?.['required']" class="alert alert-danger">Error: campo
+                        requerido</div>
+                    <div *ngIf="pizzeriaForm.get('telefono')?.touched &&
+                    pizzeriaForm.get('telefono')?.errors?.['pattern']" class="alert alert-danger">El campo debe tener
+                        solo números</div>
+                    <div *ngIf="pizzeriaForm.get('telefono')?.touched &&
+                pizzeriaForm.get('telefono')?.errors?.['minlength']" class="alert alert-danger">El campo debe tener 10
+                        números</div>
+                    <div *ngIf="pizzeriaForm.get('telefono')?.touched &&
+                pizzeriaForm.get('telefono')?.errors?.['maxlength']" class="alert alert-danger">El campo debe tener 10
+                        números</div>
+                </div>
+                <div class="mb-4">
+                    <label for="cantidad" class="form-label">Cantidad</label>
+                    <input type="number" class="form-control" required formControlName="cantidad" id="cantidad"
+                        name="cantidad">
+                    <div *ngIf="pizzeriaForm.get('cantidad')?.touched &&
+                    pizzeriaForm.get('cantidad')?.errors?.['required']" class="alert alert-danger">Error: campo
+                        requerido</div>
+                    <div *ngIf="pizzeriaForm.get('cantidad')?.touched &&
+                    pizzeriaForm.get('cantidad')?.errors?.['pattern']" class="alert alert-danger">El campo debe tener
+                        solo números</div>
+                </div>
+                <div class="d-grid gap-2 mb-4">
+                    <button class="btn btn-primary" type="submit">Agregar pizza</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <hr> <br>
+
+    <div class="col-md-6" *ngIf="pizzas.length > 0">
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>Tamaño</th>
+                    <th>Ingredientes</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pizza of pizzas; let i = index">
+                    <td>{{pizza.tamanio}}</td>
+                    <td>{{pizza.ingredientes}}</td>
+                    <td>{{pizza.cantidad}}</td>
+                    <td>{{pizza.subtotal}}</td>
+                    <td>
+                        <button class="btn btn-danger" (click)="deletePizza(i)"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-grid gap-2 mb-4 float-end">
+            <button class="btn btn-success" type="submit" (click)="confirmar()">Terminar pedido</button>
+        </div>
+    </div>
+
+    <div class="col-md-6" *ngIf="clientes.length > 0">
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    <th>Teléfono</th>
+                    <th>Total a pagar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cliente of clientes">
+                    <td>{{cliente.nombre}}</td>
+                    <td>{{cliente.direccion}}</td>
+                    <td>{{cliente.telefono}}</td>
+                    <td>{{cliente.total}}</td>
+                </tr>
+            </tbody>
+        </table> <br>
+        <h1>Total de ventas del dia: ${{totalDePizzas}}</h1>
+    </div>
+</div>

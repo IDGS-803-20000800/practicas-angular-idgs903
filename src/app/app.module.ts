@@ -8,6 +8,7 @@ import { ResistenciasModule } from './resistencias/resistencias.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuComponent } from './menu/menu.component';
 import { AppRoutingModule } from './app.routing.module';
+import { PizzeriaModule } from './pizzeria/pizzeria.module';
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import { AppRoutingModule } from './app.routing.module';
         DistanciaEntrePuntosModule,
         CinepolisModule,
         ResistenciasModule,
+        PizzeriaModule,
         BrowserAnimationsModule,
         AppRoutingModule
     ],
